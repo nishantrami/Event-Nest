@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(220, 38, 38, 0.7);
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-nav {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Card Glow & Hover Effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.12), 0 8px 10px -6px rgba(220, 38, 38, 0.08);
+}
+
+/* Ticket Notches & Perforations */
+.ticket-edge-left {
+  position: relative;
+}
+.ticket-edge-left::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-color: var(--page-bg, #f8fafc);
+  border-radius: 9999px;
+  border-right: 1px dashed rgba(148, 163, 184, 0.4);
+}
+.dark .ticket-edge-left::before {
+  background-color: #020617;
+}
+
+/* Seat Map Styling */
+.seat-btn {
+  transition: all 0.15s ease-in-out;
+}
+.seat-btn:hover:not(:disabled) {
+  transform: scale(1.15);
+}
+
+/* Shimmer / Skeleton Animation */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.animate-shimmer::after {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+/* Live Audio Equalizer Animation */
+@keyframes eqBounce {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+.animate-eq-1 { animation: eqBounce 0.7s ease-in-out infinite; }
+.animate-eq-2 { animation: eqBounce 1.1s ease-in-out 0.15s infinite; }
+.animate-eq-3 { animation: eqBounce 0.6s ease-in-out 0.3s infinite; }
+.animate-eq-4 { animation: eqBounce 1.25s ease-in-out 0.1s infinite; }
+.animate-eq-5 { animation: eqBounce 0.85s ease-in-out 0.25s infinite; }
+
+/* Gentle Floating */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float-gentle {
+  animation: floatGentle 4.5s ease-in-out infinite;
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.05); }
+}
+.animate-pulse-slow {
+  animation: pulseSlow 5s ease-in-out infinite;
+}
+
