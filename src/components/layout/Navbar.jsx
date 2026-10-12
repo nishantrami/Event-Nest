@@ -84,7 +84,9 @@ export const Navbar = () => {
     { label: 'Categories', path: '/categories' },
     { label: 'Favorites', path: '/favorites', count: favoritesCount },
     { label: 'My Bookings', path: '/my-bookings' },
+    { label: 'Contact', path: '/contact' },
   ];
+
 
   return (
     <>
