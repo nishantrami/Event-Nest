@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Eye, EyeOff, Lock, Mail, Sparkles, AlertCircle, ShieldCheck, UserCheck } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, Sparkles, AlertCircle, UserCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
@@ -17,13 +17,6 @@ export const Login = () => {
   const location = useLocation();
 
   const redirectPath = location.state?.from?.pathname || '/';
-
-  // Fast Fill Static Admin Account
-  const handleAdminFill = () => {
-    setEmail('admin@eventnest.com');
-    setPassword('admin123');
-    setError('');
-  };
 
   // Fast Fill Regular User Account
   const handleUserFill = () => {
@@ -42,13 +35,13 @@ export const Login = () => {
       setIsLoading(false);
 
       if (result.success) {
-        if (result.user.role === 'admin' && redirectPath === '/') {
-          navigate('/organizer', { replace: true });
+        if (result.user.role === 'admin') {
+          navigate('/admin', { replace: true });
         } else {
           navigate(redirectPath, { replace: true });
         }
       } else {
-        setError(result.error || 'Invalid credentials. Try static admin or user accounts below.');
+        setError(result.error || 'Invalid credentials. Please check your email and password.');
       }
     }, 500);
   };
@@ -70,51 +63,24 @@ export const Login = () => {
           </p>
         </div>
 
-        {/* Quick Fill Cards for Admin & User */}
-        <div className="space-y-2.5">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block text-center">
-            One-Click Login Credentials
-          </span>
-
-          {/* Admin Static Credentials Card */}
-          <div className="p-3.5 rounded-2xl bg-red-50 dark:bg-slate-900 border-2 border-red-500 flex items-center justify-between text-xs">
-            <div className="space-y-0.5 min-w-0 pr-2">
-              <div className="flex items-center gap-1.5 font-bold text-red-700 dark:text-red-300">
-                <ShieldCheck className="w-4 h-4 shrink-0 text-red-600" />
-                <span>Static Admin (Organizer Dashboard)</span>
-              </div>
-              <p className="text-[11px] font-mono text-slate-600 dark:text-slate-400 truncate">
-                admin@eventnest.com • admin123
-              </p>
+        {/* Quick Fill Demo User Card */}
+        <div className="p-3.5 rounded-2xl bg-orange-50 dark:bg-slate-900 border-2 border-orange-500/80 flex items-center justify-between text-xs">
+          <div className="space-y-0.5 min-w-0 pr-2">
+            <div className="flex items-center gap-1.5 font-bold text-orange-700 dark:text-orange-300">
+              <UserCheck className="w-4 h-4 shrink-0 text-orange-500" />
+              <span>Demo User Account</span>
             </div>
-            <button
-              type="button"
-              onClick={handleAdminFill}
-              className="px-3 py-1.5 rounded-xl bg-red-600 text-white font-bold text-[11px] hover:bg-red-700 transition-colors cursor-pointer shrink-0 shadow-xs"
-            >
-              Fill Admin
-            </button>
+            <p className="text-[11px] font-mono text-slate-600 dark:text-slate-400 truncate">
+              user@eventnest.com • password123
+            </p>
           </div>
-
-          {/* Regular User Credentials Card */}
-          <div className="p-3.5 rounded-2xl bg-orange-50 dark:bg-slate-900 border-2 border-orange-500 flex items-center justify-between text-xs">
-            <div className="space-y-0.5 min-w-0 pr-2">
-              <div className="flex items-center gap-1.5 font-bold text-orange-700 dark:text-orange-300">
-                <UserCheck className="w-4 h-4 shrink-0 text-orange-500" />
-                <span>Regular User (Host Event for ₹499)</span>
-              </div>
-              <p className="text-[11px] font-mono text-slate-600 dark:text-slate-400 truncate">
-                user@eventnest.com • password123
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={handleUserFill}
-              className="px-3 py-1.5 rounded-xl bg-orange-500 text-white font-bold text-[11px] hover:bg-orange-600 transition-colors cursor-pointer shrink-0 shadow-xs"
-            >
-              Fill User
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handleUserFill}
+            className="px-3 py-1.5 rounded-xl bg-orange-500 text-white font-bold text-[11px] hover:bg-orange-600 transition-colors cursor-pointer shrink-0 shadow-xs"
+          >
+            Auto Fill
+          </button>
         </div>
 
         {/* Error Banner */}

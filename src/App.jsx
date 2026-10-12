@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 // Context Providers
 import { ThemeProvider } from './context/ThemeContext';
@@ -16,6 +16,11 @@ import { Footer } from './components/layout/Footer';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { ScrollToTop } from './components/common/ScrollToTop';
 import { WebsiteLoader } from './components/common/WebsiteLoader';
+
+// Secret Admin Components
+import { SecretAdminGateway } from './components/admin/SecretAdminGateway';
+import { AdminPanel } from './pages/admin/AdminPanel';
+import { AdminLogin } from './pages/admin/AdminLogin';
 
 // Public Pages
 import { Home } from './pages/Home';
@@ -36,9 +41,7 @@ import { Profile } from './pages/Profile';
 import { Settings } from './pages/Settings';
 
 // Organizer Pages
-import { OrganizerDashboard } from './pages/organizer/OrganizerDashboard';
 import { CreateEvent } from './pages/organizer/CreateEvent';
-import { MyEvents } from './pages/organizer/MyEvents';
 import { EditEvent } from './pages/organizer/EditEvent';
 
 // Information & Error Pages
@@ -47,6 +50,150 @@ import { Contact } from './pages/Contact';
 import { Help } from './pages/Help';
 import { NotFound } from './pages/NotFound';
 import { AccessDenied } from './pages/AccessDenied';
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  return (
+    <>
+      <ScrollToTop />
+      {/* Global Secret Admin Gateway Trigger (Ctrl + A) */}
+      <SecretAdminGateway />
+
+      {isAdminRoute ? (
+        /* Dedicated Admin Panel routes (Has its own sidebar and header layout) */
+        <Routes>
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute adminOnly={true}>
+                <AdminPanel />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/*"
+            element={
+              <ProtectedRoute adminOnly={true}>
+                <AdminPanel />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      ) : (
+        /* Standard Storefront Layout */
+        <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+          <Navbar />
+          <main className="flex-1">
+            <Routes>
+              {/* Public Discovery Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/events/:id" element={<EventDetails />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/search" element={<Events />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/booking-success" element={<BookingSuccess />} />
+              <Route path="/ticket/:id" element={<DigitalTicketPage />} />
+
+              {/* Protected Booking & User Routes */}
+              <Route
+                path="/checkout"
+                element={
+                  <ProtectedRoute>
+                    <Checkout />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/my-bookings"
+                element={
+                  <ProtectedRoute>
+                    <MyBookings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/favorites"
+                element={
+                  <ProtectedRoute>
+                    <Favorites />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Event Hosting Routes (User can host event for ₹499 Admin Fee) */}
+              <Route
+                path="/host-event"
+                element={
+                  <ProtectedRoute>
+                    <CreateEvent />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/organizer/create-event"
+                element={
+                  <ProtectedRoute>
+                    <CreateEvent />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Legacy Organizer Routes Redirected to Admin Panel */}
+              <Route
+                path="/organizer"
+                element={<Navigate to="/admin" replace />}
+              />
+              <Route
+                path="/organizer/events"
+                element={<Navigate to="/admin?tab=events" replace />}
+              />
+              <Route
+                path="/organizer/edit/:id"
+                element={
+                  <ProtectedRoute adminOnly={true}>
+                    <EditEvent />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Support, Access Control & Legal Pages */}
+              <Route path="/access-denied" element={<AccessDenied />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/help" element={<Help />} />
+
+              {/* 404 Route */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      )}
+    </>
+  );
+}
 
 function App() {
   return (
@@ -59,121 +206,7 @@ function App() {
                 <NotificationProvider>
                   <WebsiteLoader />
                   <Router>
-                    <ScrollToTop />
-                    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-indigo-500 selection:text-white transition-colors duration-200">
-                      <Navbar />
-                      <main className="flex-1">
-                        <Routes>
-                          {/* Public Discovery Routes */}
-                          <Route path="/" element={<Home />} />
-                          <Route path="/events" element={<Events />} />
-                          <Route path="/events/:id" element={<EventDetails />} />
-                          <Route path="/categories" element={<Categories />} />
-                          <Route path="/search" element={<Events />} />
-                          <Route path="/cart" element={<Cart />} />
-                          <Route path="/login" element={<Login />} />
-                          <Route path="/register" element={<Register />} />
-                          <Route path="/booking-success" element={<BookingSuccess />} />
-                          <Route path="/ticket/:id" element={<DigitalTicketPage />} />
-
-                          {/* Protected Booking & User Routes */}
-                          <Route
-                            path="/checkout"
-                            element={
-                              <ProtectedRoute>
-                                <Checkout />
-                              </ProtectedRoute>
-                            }
-                          />
-                          <Route
-                            path="/my-bookings"
-                            element={
-                              <ProtectedRoute>
-                                <MyBookings />
-                              </ProtectedRoute>
-                            }
-                          />
-                          <Route
-                            path="/favorites"
-                            element={
-                              <ProtectedRoute>
-                                <Favorites />
-                              </ProtectedRoute>
-                            }
-                          />
-                          <Route
-                            path="/profile"
-                            element={
-                              <ProtectedRoute>
-                                <Profile />
-                              </ProtectedRoute>
-                            }
-                          />
-                          <Route
-                            path="/settings"
-                            element={
-                              <ProtectedRoute>
-                                <Settings />
-                              </ProtectedRoute>
-                            }
-                          />
-
-                          {/* Event Hosting Routes (User can host event for ₹499 Admin Fee) */}
-                          <Route
-                            path="/host-event"
-                            element={
-                              <ProtectedRoute>
-                                <CreateEvent />
-                              </ProtectedRoute>
-                            }
-                          />
-                          <Route
-                            path="/organizer/create-event"
-                            element={
-                              <ProtectedRoute>
-                                <CreateEvent />
-                              </ProtectedRoute>
-                            }
-                          />
-
-                          {/* Protected Organizer Routes (STRICTLY ADMIN ONLY) */}
-                          <Route
-                            path="/organizer"
-                            element={
-                              <ProtectedRoute adminOnly={true}>
-                                <OrganizerDashboard />
-                              </ProtectedRoute>
-                            }
-                          />
-                          <Route
-                            path="/organizer/events"
-                            element={
-                              <ProtectedRoute adminOnly={true}>
-                                <MyEvents />
-                              </ProtectedRoute>
-                            }
-                          />
-                          <Route
-                            path="/organizer/edit/:id"
-                            element={
-                              <ProtectedRoute adminOnly={true}>
-                                <EditEvent />
-                              </ProtectedRoute>
-                            }
-                          />
-
-                          {/* Support, Access Control & Legal Pages */}
-                          <Route path="/access-denied" element={<AccessDenied />} />
-                          <Route path="/about" element={<About />} />
-                          <Route path="/contact" element={<Contact />} />
-                          <Route path="/help" element={<Help />} />
-
-                          {/* 404 Route */}
-                          <Route path="*" element={<NotFound />} />
-                        </Routes>
-                      </main>
-                      <Footer />
-                    </div>
+                    <AppContent />
                   </Router>
                 </NotificationProvider>
               </BookingProvider>

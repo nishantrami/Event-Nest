@@ -350,12 +350,12 @@ export const Navbar = () => {
                                 Admin Control Center
                               </div>
                               <Link
-                                to="/organizer"
+                                to="/admin"
                                 onClick={() => setIsProfileOpen(false)}
                                 className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-purple-700 dark:text-purple-300 bg-purple-50/70 dark:bg-purple-950/40 hover:bg-purple-100 dark:hover:bg-purple-950/70 transition-colors"
                               >
                                 <LayoutDashboard className="w-4 h-4 text-purple-600" />
-                                <span>Organizer Dashboard</span>
+                                <span>Admin Panel (Full Control)</span>
                               </Link>
 
                               <Link
@@ -475,11 +475,11 @@ export const Navbar = () => {
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
                 {user?.role === 'admin' && (
                   <Link
-                    to="/organizer"
+                    to="/admin"
                     className="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/50 border border-purple-200 dark:border-purple-800/60"
                   >
                     <LayoutDashboard className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                    <span>Admin Organizer Dashboard</span>
+                    <span>Admin Command Center</span>
                   </Link>
                 )}
 

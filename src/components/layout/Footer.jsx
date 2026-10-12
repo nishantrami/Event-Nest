@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, Mail, Send, Heart, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Button } from '../common/Button';
+import { useAuth } from '../../context/AuthContext';
 
 export const Footer = () => {
+  const { user } = useAuth();
   const [subscribedEmail, setSubscribedEmail] = useState('');
   const [subscribedSuccess, setSubscribedSuccess] = useState(false);
 
@@ -136,12 +138,14 @@ export const Footer = () => {
                   <span className="text-[10px] text-emerald-400 font-bold">₹499 Fee</span>
                 </Link>
               </li>
-              <li>
-                <Link to="/organizer" className="hover:text-indigo-400 transition-colors flex items-center justify-between">
-                  <span>Organizer Dashboard</span>
-                  <span className="text-[10px] text-purple-400 font-semibold">Admin</span>
-                </Link>
-              </li>
+              {user?.role === 'admin' && (
+                <li>
+                  <Link to="/admin" className="hover:text-indigo-400 transition-colors flex items-center justify-between">
+                    <span>Admin Panel</span>
+                    <span className="text-[10px] text-purple-400 font-semibold">Admin</span>
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link to="/help" className="hover:text-indigo-400 transition-colors">
                   Organizer Fees & Policies

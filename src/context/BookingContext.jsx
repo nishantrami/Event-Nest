@@ -143,6 +143,16 @@ export const BookingProvider = ({ children }) => {
     );
   };
 
+  const updateBookingStatus = (id, newStatus) => {
+    setBookings((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, status: newStatus } : b))
+    );
+  };
+
+  const deleteBooking = (id) => {
+    setBookings((prev) => prev.filter((b) => b.id !== id));
+  };
+
   // Import a booking directly (e.g. when scanned from QR code on mobile)
   const importBooking = (importedBooking) => {
     if (!importedBooking || !importedBooking.id) return;
@@ -162,6 +172,8 @@ export const BookingProvider = ({ children }) => {
         createBooking,
         getBookingById,
         cancelBooking,
+        updateBookingStatus,
+        deleteBooking,
         importBooking,
         reservedSeatsMap,
         getUserBookings,

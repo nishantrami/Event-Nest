@@ -185,6 +185,84 @@ export const AuthProvider = ({ children }) => {
     return { success: true, user: updated };
   };
 
+  const loginAsAdminDirectly = () => {
+    setUser(STATIC_ADMIN);
+    saveToStorage(STORAGE_KEYS.USER, STATIC_ADMIN);
+    return { success: true, user: STATIC_ADMIN };
+  };
+
+  const addUser = ({ name, email, phone, role = 'user', city = 'Mumbai', password = 'password123' }) => {
+    const normalizedEmail = email.trim().toLowerCase();
+    const existing = registeredUsers.find(u => u.email.toLowerCase() === normalizedEmail);
+    if (existing) {
+      return { success: false, error: 'User with this email already exists' };
+    }
+
+    const newUser = {
+      id: `usr-${Date.now()}`,
+      name: name.trim(),
+      email: normalizedEmail,
+      phone: phone?.trim() || '+91 98000 11223',
+      password,
+      role: role || 'user',
+      status: 'active',
+      avatar: `https://images.unsplash.com/photo-${1535713875002 + Math.floor(Math.random() * 1000)}?auto=format&fit=crop&w=300&q=80`,
+      city: city || 'Mumbai',
+      bio: 'EventNest registered member.',
+      joinedDate: new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' }).format(new Date()),
+      preferences: {
+        favoriteCategories: ['music', 'festivals'],
+        emailNotifications: true,
+        smsAlerts: true,
+        themeMode: 'system'
+      }
+    };
+
+    const updatedList = [newUser, ...registeredUsers];
+    setRegisteredUsers(updatedList);
+    saveToStorage(STORAGE_KEYS.USERS_LIST, updatedList);
+    return { success: true, user: newUser };
+  };
+
+  const updateUser = (userId, updatedFields) => {
+    const updatedList = registeredUsers.map(u => (u.id === userId ? { ...u, ...updatedFields } : u));
+    setRegisteredUsers(updatedList);
+    saveToStorage(STORAGE_KEYS.USERS_LIST, updatedList);
+
+    if (user && user.id === userId) {
+      const updatedCurrent = { ...user, ...updatedFields };
+      setUser(updatedCurrent);
+      saveToStorage(STORAGE_KEYS.USER, updatedCurrent);
+    }
+    return { success: true };
+  };
+
+  const deleteUser = (userId) => {
+    if (userId === STATIC_ADMIN.id) {
+      return { success: false, error: 'Cannot delete master static administrator.' };
+    }
+    const updatedList = registeredUsers.filter(u => u.id !== userId);
+    setRegisteredUsers(updatedList);
+    saveToStorage(STORAGE_KEYS.USERS_LIST, updatedList);
+    return { success: true };
+  };
+
+  const toggleUserRole = (userId) => {
+    if (userId === STATIC_ADMIN.id) return { success: false, error: 'Cannot change master admin role.' };
+    const target = registeredUsers.find(u => u.id === userId);
+    if (!target) return { success: false, error: 'User not found' };
+    const newRole = target.role === 'admin' ? 'user' : 'admin';
+    return updateUser(userId, { role: newRole });
+  };
+
+  const toggleUserStatus = (userId) => {
+    if (userId === STATIC_ADMIN.id) return { success: false, error: 'Cannot suspend master admin.' };
+    const target = registeredUsers.find(u => u.id === userId);
+    if (!target) return { success: false, error: 'User not found' };
+    const newStatus = target.status === 'suspended' ? 'active' : 'suspended';
+    return updateUser(userId, { status: newStatus });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -193,9 +271,16 @@ export const AuthProvider = ({ children }) => {
         isAdmin: user?.role === 'admin',
         isUser: user?.role === 'user',
         login,
+        loginAsAdminDirectly,
         register,
         logout,
         updateProfile,
+        registeredUsers,
+        addUser,
+        updateUser,
+        deleteUser,
+        toggleUserRole,
+        toggleUserStatus
       }}
     >
       {children}

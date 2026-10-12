@@ -7,13 +7,16 @@ export const ProtectedRoute = ({ children, adminOnly = false }) => {
   const location = useLocation();
 
   if (!isAuthenticated) {
+    if (adminOnly || location.pathname.startsWith('/admin')) {
+      return <Navigate to="/admin/login" state={{ from: location }} replace />;
+    }
     // Redirect to login with previous intended path
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // Restrict Organizer Dashboard to Admin only
+  // Restrict Admin routes to Admin role only
   if (adminOnly && user?.role !== 'admin') {
-    return <Navigate to="/access-denied" state={{ from: location }} replace />;
+    return <Navigate to="/admin/login" state={{ from: location }} replace />;
   }
 
   return children;
