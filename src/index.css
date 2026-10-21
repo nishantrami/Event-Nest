@@ -1,14 +1,30 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --page-bg: #f8fafc;
+  }
+
+  .dark {
+    --page-bg: #020617;
   }
 
   html {
     font-family: var(--font-sans);
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {

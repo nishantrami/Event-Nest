@@ -208,44 +208,44 @@ export const Checkout = () => {
             </div>
 
             {/* Payment Method Selector Tabs */}
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               <button
                 type="button"
                 onClick={() => setPaymentMethod('upi')}
-                className={`p-4 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer ${
+                className={`p-3 sm:p-4 rounded-2xl border-2 flex flex-col items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                   paymentMethod === 'upi'
                     ? 'border-red-600 bg-red-50/50 dark:bg-red-950/40 text-red-600 dark:text-red-400 shadow-sm'
                     : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-600 dark:text-slate-400'
                 }`}
               >
-                <QrCode className="w-6 h-6" />
-                <span className="text-xs font-bold">UPI / QR</span>
+                <QrCode className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="text-[11px] sm:text-xs font-bold text-center">UPI / QR</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setPaymentMethod('card')}
-                className={`p-4 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer ${
+                className={`p-3 sm:p-4 rounded-2xl border-2 flex flex-col items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                   paymentMethod === 'card'
                     ? 'border-red-600 bg-red-50/50 dark:bg-red-950/40 text-red-600 dark:text-red-400 shadow-sm'
                     : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-600 dark:text-slate-400'
                 }`}
               >
-                <CreditCard className="w-6 h-6" />
-                <span className="text-xs font-bold">Card</span>
+                <CreditCard className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="text-[11px] sm:text-xs font-bold text-center">Card</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setPaymentMethod('netbanking')}
-                className={`p-4 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer ${
+                className={`p-3 sm:p-4 rounded-2xl border-2 flex flex-col items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                   paymentMethod === 'netbanking'
                     ? 'border-red-600 bg-red-50/50 dark:bg-red-950/40 text-red-600 dark:text-red-400 shadow-sm'
                     : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-slate-600 dark:text-slate-400'
                 }`}
               >
-                <Building2 className="w-6 h-6" />
-                <span className="text-xs font-bold">Net Banking</span>
+                <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="text-[11px] sm:text-xs font-bold text-center">Net Banking</span>
               </button>
             </div>
 

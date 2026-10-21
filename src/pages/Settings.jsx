@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/common/Button';
 
 export const Settings = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { user } = useAuth();
   const [emailAlerts, setEmailAlerts] = useState(true);
   const [smsAlerts, setSmsAlerts] = useState(false);
@@ -51,34 +51,44 @@ export const Settings = () => {
         {/* Appearance Section */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
           <h3 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-            {theme === 'dark' ? <Moon className="w-5 h-5 text-indigo-400" /> : <Sun className="w-5 h-5 text-amber-500" />}
+            {theme === 'dark' ? <Moon className="w-5 h-5 text-indigo-400 fill-indigo-400/20" /> : <Sun className="w-5 h-5 text-amber-500 fill-amber-500/20" />}
             Theme & Appearance
           </h3>
-          <p className="text-xs text-slate-500">
-            Choose your preferred color theme. Current theme: <strong className="capitalize">{theme}</strong>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Choose your preferred color theme. Current theme: <strong className="capitalize text-slate-900 dark:text-white">{theme}</strong>
           </p>
 
-          <div className="pt-2 flex items-center gap-4">
+          <div className="pt-2 flex flex-wrap items-center gap-4">
             <button
-              onClick={toggleTheme}
+              type="button"
+              onClick={() => setTheme('light')}
               className={`px-5 py-3 rounded-2xl border-2 flex items-center gap-2.5 text-xs font-bold transition-all cursor-pointer ${
                 theme === 'light'
-                  ? 'border-indigo-600 bg-indigo-50/50 text-indigo-600 shadow-sm'
+                  ? 'border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 shadow-sm shadow-indigo-500/10'
                   : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              <Sun className="w-4 h-4" /> Light Mode
+              <Sun className={`w-4 h-4 ${theme === 'light' ? 'text-amber-500 fill-amber-500' : 'text-slate-400'}`} />
+              <span>Light Mode</span>
+              {theme === 'light' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
+              )}
             </button>
 
             <button
-              onClick={toggleTheme}
+              type="button"
+              onClick={() => setTheme('dark')}
               className={`px-5 py-3 rounded-2xl border-2 flex items-center gap-2.5 text-xs font-bold transition-all cursor-pointer ${
                 theme === 'dark'
-                  ? 'border-indigo-600 bg-indigo-950/40 text-indigo-400 shadow-sm'
+                  ? 'border-indigo-600 bg-indigo-950/60 text-indigo-400 shadow-sm shadow-indigo-500/10'
                   : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              <Moon className="w-4 h-4" /> Dark Mode
+              <Moon className={`w-4 h-4 ${theme === 'dark' ? 'text-indigo-400 fill-indigo-400' : 'text-slate-400'}`} />
+              <span>Dark Mode</span>
+              {theme === 'dark' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+              )}
             </button>
           </div>
         </div>

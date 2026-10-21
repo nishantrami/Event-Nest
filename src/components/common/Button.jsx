@@ -26,6 +26,8 @@ export const Button = ({
     ghost: 'text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 focus:ring-slate-400',
     danger: 'bg-red-700 hover:bg-red-800 text-white shadow-md shadow-red-700/20 focus:ring-red-600 border border-transparent',
     success: 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 focus:ring-emerald-500 border border-transparent',
+    purple: 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 focus:ring-purple-500 border border-purple-400/30',
+    glass: 'bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md focus:ring-white/40',
   };
 
   const sizes = {

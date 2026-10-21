@@ -104,7 +104,7 @@ export const HeroSection = ({ events = [] }) => {
   };
 
   return (
-    <section className="relative min-h-[92vh] lg:min-h-[96vh] flex items-center justify-center pt-8 pb-16 lg:pb-24 overflow-hidden bg-slate-950 text-white">
+    <section className="relative flex items-center justify-center py-8 sm:py-14 lg:py-20 min-h-0 lg:min-h-[92vh] overflow-hidden bg-slate-950 text-white">
       {/* 1. Background Image with Cinematic Overlays */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <img
@@ -126,32 +126,32 @@ export const HeroSection = ({ events = [] }) => {
         <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent via-slate-950/80 to-slate-50 dark:to-slate-950" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-4 sm:pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* ================= LEFT COLUMN: Typography & Command Bar ================= */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="lg:col-span-7 space-y-7 text-center lg:text-left"
+            className="lg:col-span-7 space-y-5 sm:space-y-7 text-center lg:text-left"
           >
             {/* Live Hub Glowing Radar Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-black/20">
-              <span className="relative flex h-2.5 w-2.5">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow-lg shadow-black/20 max-w-full">
+              <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
+                <span className="relative inline-flex rounded-full h-full w-full bg-red-500" />
               </span>
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-white/90">The Ultimate Live Experience Hub</span>
-              <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-white/40" />
-              <span className="hidden sm:inline-block text-amber-300 font-semibold lowercase">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span className="text-white/90 truncate">The Ultimate Live Experience Hub</span>
+              <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-white/40 shrink-0" />
+              <span className="hidden sm:inline-block text-amber-300 font-semibold lowercase shrink-0">
                 verified e-tickets
               </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.08]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.1]">
               Discover Your Next <br />
               <span className="bg-gradient-to-r from-red-500 via-rose-500 to-amber-400 bg-clip-text text-transparent drop-shadow-md">
                 Experience.
@@ -159,40 +159,42 @@ export const HeroSection = ({ events = [] }) => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
               Find concerts, workshops, sports, festivals and unforgettable experiences near you. Verified tickets, instant e-passes, zero hassles.
             </p>
 
             {/* Multi-Function Smart Command Bar */}
             <form
               onSubmit={handleSearchSubmit}
-              className="max-w-xl mx-auto lg:mx-0 backdrop-blur-2xl bg-white/10 dark:bg-slate-900/60 border border-white/20 dark:border-white/15 p-2 rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/40 flex flex-col sm:flex-row items-center gap-2"
+              className="w-full max-w-xl mx-auto lg:mx-0 backdrop-blur-2xl bg-white/10 dark:bg-slate-900/60 border border-white/20 dark:border-white/15 p-2 rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/40 flex flex-col sm:flex-row items-stretch sm:items-center gap-2"
             >
               {/* City Selector Dropdown */}
-              <div className="flex items-center gap-2 px-3 py-2 w-full sm:w-auto border-b sm:border-b-0 sm:border-r border-white/15 text-xs font-semibold text-slate-200 shrink-0">
-                <MapPin className="w-4 h-4 text-red-400 shrink-0" />
-                <select
-                  value={selectedCity}
-                  onChange={(e) => setSelectedCity(e.target.value)}
-                  className="bg-transparent text-white font-medium focus:outline-none cursor-pointer pr-1"
-                >
-                  {CITIES.map((city) => (
-                    <option key={city} value={city} className="bg-slate-900 text-white">
-                      {city}
-                    </option>
-                  ))}
-                </select>
+              <div className="flex items-center justify-between sm:justify-start gap-2 px-3 py-2 w-full sm:w-auto border-b sm:border-b-0 sm:border-r border-white/15 text-xs font-semibold text-slate-200 shrink-0">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-red-400 shrink-0" />
+                  <select
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.target.value)}
+                    className="bg-transparent text-white font-medium focus:outline-none cursor-pointer pr-1"
+                  >
+                    {CITIES.map((city) => (
+                      <option key={city} value={city} className="bg-slate-900 text-white">
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {/* Search Keyword Input */}
-              <div className="flex items-center gap-2.5 px-3 w-full flex-1">
+              <div className="flex items-center gap-2.5 px-3 py-1 sm:py-0 w-full flex-1">
                 <Search className="w-4 h-4 text-red-400 shrink-0" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search concerts, comedy, tech, cities..."
-                  className="w-full bg-transparent text-sm sm:text-base text-white placeholder-slate-400 focus:outline-none py-1.5"
+                  className="w-full bg-transparent text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none py-1.5"
                 />
                 {searchQuery && (
                   <button
@@ -208,7 +210,7 @@ export const HeroSection = ({ events = [] }) => {
               {/* Primary Explore Button */}
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-red-600/40 hover:shadow-red-600/60 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-red-600/40 hover:shadow-red-600/60 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
               >
                 <span>Explore Now</span>
                 <ArrowRight className="w-4 h-4" />
@@ -216,7 +218,7 @@ export const HeroSection = ({ events = [] }) => {
             </form>
 
             {/* Quick Category Chips */}
-            <div className="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+            <div className="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-2">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Popular:
               </span>
@@ -226,7 +228,7 @@ export const HeroSection = ({ events = [] }) => {
                   <Link
                     key={cat.slug}
                     to={`/events?category=${cat.slug}`}
-                    className="group inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-slate-200 hover:text-white backdrop-blur-md transition-all active:scale-95"
+                    className="group inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-slate-200 hover:text-white backdrop-blur-md transition-all active:scale-95"
                   >
                     <IconComponent className="w-3.5 h-3.5 text-red-400 group-hover:scale-110 transition-transform" />
                     <span>{cat.name}</span>
@@ -236,28 +238,28 @@ export const HeroSection = ({ events = [] }) => {
             </div>
 
             {/* Social Proof & Trust Stats */}
-            <div className="pt-4 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 border-t border-white/15">
-              <div className="text-left">
+            <div className="pt-4 grid grid-cols-3 gap-2 sm:gap-4 max-w-md mx-auto lg:mx-0 border-t border-white/15">
+              <div className="text-center sm:text-left">
                 <span className="text-lg sm:text-2xl font-black text-white block">
                   30+
                 </span>
-                <span className="text-[11px] text-slate-400 font-medium">
+                <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
                   Live Events
                 </span>
               </div>
-              <div className="text-left">
+              <div className="text-center sm:text-left">
                 <span className="text-lg sm:text-2xl font-black text-white block">
                   50K+
                 </span>
-                <span className="text-[11px] text-slate-400 font-medium">
+                <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
                   Attendees
                 </span>
               </div>
-              <div className="text-left">
+              <div className="text-center sm:text-left">
                 <span className="text-lg sm:text-2xl font-black text-emerald-400 block">
                   100%
                 </span>
-                <span className="text-[11px] text-slate-400 font-medium">
+                <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">
                   Verified Passes
                 </span>
               </div>
@@ -270,7 +272,7 @@ export const HeroSection = ({ events = [] }) => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="lg:col-span-5 relative"
+              className="lg:col-span-5 relative w-full max-w-md mx-auto lg:max-w-none"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
@@ -295,14 +297,14 @@ export const HeroSection = ({ events = [] }) => {
                   <div className="flex items-center gap-1">
                     <button
                       onClick={handlePrevSpotlight}
-                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-colors"
+                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-colors cursor-pointer"
                       aria-label="Previous event"
                     >
                       <ChevronLeft className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={handleNextSpotlight}
-                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-colors"
+                      className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-colors cursor-pointer"
                       aria-label="Next event"
                     >
                       <ChevronRight className="w-3.5 h-3.5" />
@@ -363,63 +365,63 @@ export const HeroSection = ({ events = [] }) => {
                       <span className="text-[11px] font-bold uppercase tracking-wider text-orange-400 block drop-shadow-sm">
                         {currentEvent.category} • {currentEvent.city}
                       </span>
-                      <h3 className="text-lg font-black text-white line-clamp-1 drop-shadow-md">
+                      <h3 className="text-base sm:text-lg font-black text-white line-clamp-1 drop-shadow-md">
                         {currentEvent.title}
                       </h3>
                     </div>
                   </div>
 
                   {/* Real-time Glowing Countdown Box */}
-                  <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-center space-y-2.5">
+                  <div className="p-3 sm:p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-center space-y-2 sm:space-y-2.5">
                     <div className="flex items-center justify-between px-1">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                         <Calendar className="w-3 h-3 text-red-400" /> Event Starts In:
                       </span>
-                      <span className="text-[10px] font-semibold text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+                      <span className="text-[9px] sm:text-[10px] font-semibold text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
                         Live Tracking
                       </span>
                     </div>
 
                     {/* Glowing LED Timer Grid */}
-                    <div className="flex items-center justify-center gap-2 sm:gap-3">
-                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-white/15 rounded-xl px-2.5 sm:px-3 py-2 min-w-[54px] sm:min-w-[62px] shadow-inner">
-                        <span className="text-xl sm:text-2xl font-black text-white tabular-nums">
+                    <div className="flex items-center justify-center gap-1 sm:gap-2.5">
+                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-white/15 rounded-xl px-1.5 sm:px-3 py-1.5 sm:py-2 min-w-[42px] sm:min-w-[60px] shadow-inner">
+                        <span className="text-base sm:text-2xl font-black text-white tabular-nums">
                           {countdown.days}
                         </span>
-                        <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
+                        <span className="text-[8px] sm:text-[9px] uppercase font-bold text-slate-400 tracking-wider">
                           Days
                         </span>
                       </div>
 
-                      <span className="text-red-500 font-bold text-lg">:</span>
+                      <span className="text-red-500 font-bold text-sm sm:text-lg">:</span>
 
-                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-white/15 rounded-xl px-2.5 sm:px-3 py-2 min-w-[54px] sm:min-w-[62px] shadow-inner">
-                        <span className="text-xl sm:text-2xl font-black text-white tabular-nums">
+                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-white/15 rounded-xl px-1.5 sm:px-3 py-1.5 sm:py-2 min-w-[42px] sm:min-w-[60px] shadow-inner">
+                        <span className="text-base sm:text-2xl font-black text-white tabular-nums">
                           {countdown.hours}
                         </span>
-                        <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
+                        <span className="text-[8px] sm:text-[9px] uppercase font-bold text-slate-400 tracking-wider">
                           Hours
                         </span>
                       </div>
 
-                      <span className="text-red-500 font-bold text-lg">:</span>
+                      <span className="text-red-500 font-bold text-sm sm:text-lg">:</span>
 
-                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-white/15 rounded-xl px-2.5 sm:px-3 py-2 min-w-[54px] sm:min-w-[62px] shadow-inner">
-                        <span className="text-xl sm:text-2xl font-black text-white tabular-nums">
+                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-white/15 rounded-xl px-1.5 sm:px-3 py-1.5 sm:py-2 min-w-[42px] sm:min-w-[60px] shadow-inner">
+                        <span className="text-base sm:text-2xl font-black text-white tabular-nums">
                           {countdown.minutes}
                         </span>
-                        <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider">
+                        <span className="text-[8px] sm:text-[9px] uppercase font-bold text-slate-400 tracking-wider">
                           Mins
                         </span>
                       </div>
 
-                      <span className="text-red-500 font-bold text-lg">:</span>
+                      <span className="text-red-500 font-bold text-sm sm:text-lg">:</span>
 
-                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-red-500/30 rounded-xl px-2.5 sm:px-3 py-2 min-w-[54px] sm:min-w-[62px] shadow-inner shadow-red-500/10">
-                        <span className="text-xl sm:text-2xl font-black text-red-400 tabular-nums">
+                      <div className="flex flex-col items-center justify-center bg-slate-950/70 border border-red-500/30 rounded-xl px-1.5 sm:px-3 py-1.5 sm:py-2 min-w-[42px] sm:min-w-[60px] shadow-inner shadow-red-500/10">
+                        <span className="text-base sm:text-2xl font-black text-red-400 tabular-nums">
                           {countdown.seconds}
                         </span>
-                        <span className="text-[9px] uppercase font-bold text-red-400/80 tracking-wider">
+                        <span className="text-[8px] sm:text-[9px] uppercase font-bold text-red-400/80 tracking-wider">
                           Secs
                         </span>
                       </div>
@@ -428,7 +430,7 @@ export const HeroSection = ({ events = [] }) => {
 
                   {/* Urgency Progress Bar */}
                   <div className="space-y-1 px-1">
-                    <div className="flex justify-between text-[11px] text-slate-300 font-medium">
+                    <div className="flex justify-between text-[10px] sm:text-[11px] text-slate-300 font-medium">
                       <span className="flex items-center gap-1 text-amber-300 font-semibold">
                         <Zap className="w-3 h-3 fill-amber-300" /> Selling Fast
                       </span>
@@ -445,13 +447,13 @@ export const HeroSection = ({ events = [] }) => {
                       <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
                         Passes From
                       </span>
-                      <span className="text-2xl font-black text-white">
+                      <span className="text-xl sm:text-2xl font-black text-white">
                         ₹{Number(currentEvent.price).toLocaleString('en-IN')}
                       </span>
                     </div>
 
                     <Link to={`/events/${currentEvent.id}`}>
-                      <button className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-red-600/40 hover:shadow-red-600/60 active:scale-95 transition-all flex items-center gap-2 cursor-pointer">
+                      <button className="px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-red-600/40 hover:shadow-red-600/60 active:scale-95 transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer">
                         <Ticket className="w-4 h-4" />
                         <span>Book Tickets</span>
                       </button>
@@ -460,8 +462,8 @@ export const HeroSection = ({ events = [] }) => {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Floating Social Proof Chip */}
-              <div className="absolute -bottom-5 -left-5 hidden sm:flex items-center gap-3 p-3 rounded-2xl bg-slate-900/90 border border-white/20 shadow-2xl backdrop-blur-xl animate-float-gentle">
+              {/* Floating Social Proof Chip (Desktop only to prevent viewport overflow) */}
+              <div className="absolute -bottom-5 -left-5 hidden lg:flex items-center gap-3 p-3 rounded-2xl bg-slate-900/90 border border-white/20 shadow-2xl backdrop-blur-xl animate-float-gentle">
                 <div className="w-9 h-9 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center shrink-0">
                   <Star className="w-5 h-5 fill-amber-400" />
                 </div>
@@ -475,8 +477,8 @@ export const HeroSection = ({ events = [] }) => {
                 </div>
               </div>
 
-              {/* Floating Verified Guarantee Tag */}
-              <div className="absolute -top-3 -right-3 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-white/20 shadow-xl backdrop-blur-xl text-emerald-400 text-xs font-bold">
+              {/* Floating Verified Guarantee Tag (Desktop only) */}
+              <div className="absolute -top-3 -right-3 hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-white/20 shadow-xl backdrop-blur-xl text-emerald-400 text-xs font-bold">
                 <ShieldCheck className="w-4 h-4" />
                 <span>100% Official Tickets</span>
               </div>
@@ -486,33 +488,33 @@ export const HeroSection = ({ events = [] }) => {
         </div>
 
         {/* ================= BOTTOM HERO VALUE STRIP ================= */}
-        <div className="mt-14 pt-6 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <Zap className="w-5 h-5 text-amber-400 shrink-0" />
-            <div>
-              <span className="text-xs font-bold text-white block">Instant E-Passes</span>
-              <span className="text-[10px] text-slate-400">Instant QR sent to email</span>
+        <div className="mt-10 sm:mt-14 pt-6 border-t border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 text-left">
+          <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
+            <div className="min-w-0">
+              <span className="text-xs font-bold text-white block truncate">Instant E-Passes</span>
+              <span className="text-[10px] text-slate-400 block truncate">Instant QR sent to email</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
-            <div>
-              <span className="text-xs font-bold text-white block">100% Guaranteed</span>
-              <span className="text-[10px] text-slate-400">Authorized event partners</span>
+          <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0" />
+            <div className="min-w-0">
+              <span className="text-xs font-bold text-white block truncate">100% Guaranteed</span>
+              <span className="text-[10px] text-slate-400 block truncate">Authorized partners</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <Star className="w-5 h-5 text-yellow-400 shrink-0" />
-            <div>
-              <span className="text-xs font-bold text-white block">Top Rated Experience</span>
-              <span className="text-[10px] text-slate-400">Over 50K happy fans</span>
+          <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 shrink-0" />
+            <div className="min-w-0">
+              <span className="text-xs font-bold text-white block truncate">Top Rated</span>
+              <span className="text-[10px] text-slate-400 block truncate">Over 50K happy fans</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <Ticket className="w-5 h-5 text-rose-400 shrink-0" />
-            <div>
-              <span className="text-xs font-bold text-white block">Zero Convenience Hassle</span>
-              <span className="text-[10px] text-slate-400">Seamless gate entry</span>
+          <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-rose-400 shrink-0" />
+            <div className="min-w-0">
+              <span className="text-xs font-bold text-white block truncate">Zero Hassle</span>
+              <span className="text-[10px] text-slate-400 block truncate">Seamless gate entry</span>
             </div>
           </div>
         </div>
@@ -521,3 +523,4 @@ export const HeroSection = ({ events = [] }) => {
     </section>
   );
 };
+
