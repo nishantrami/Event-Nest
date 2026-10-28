@@ -15,7 +15,7 @@ export const TicketSelector = ({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-slate-700 dark:text-slate-300">
             1. Select Ticket Tier
           </h3>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -40,13 +40,13 @@ export const TicketSelector = ({
               onClick={() => onSelectType(tier)}
               className={`relative rounded-3xl p-5 border-2 transition-all cursor-pointer flex flex-col justify-between ${
                 isSelected
-                  ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/30 shadow-lg shadow-indigo-600/10 dark:border-indigo-500'
-                  : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+                  ? 'border-rose-500 bg-rose-50/50 dark:bg-rose-950/30 shadow-lg shadow-rose-500/10 dark:border-rose-500'
+                  : 'border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
               {tier.id === 'prem' && (
                 <div className="absolute -top-3 right-4">
-                  <Badge variant="trending" size="sm" icon={Sparkles} className="bg-amber-500 text-slate-950 border-none font-bold">
+                  <Badge variant="trending" size="sm" icon={Sparkles}>
                     Popular
                   </Badge>
                 </div>
@@ -60,7 +60,7 @@ export const TicketSelector = ({
                   <div
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
                       isSelected
-                        ? 'border-indigo-600 bg-indigo-600 text-white'
+                        ? 'border-rose-500 bg-rose-500 text-white'
                         : 'border-slate-300 dark:border-slate-600'
                     }`}
                   >
@@ -87,7 +87,7 @@ export const TicketSelector = ({
                 </ul>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 text-[11px] text-slate-500 dark:text-slate-400 font-medium flex justify-between items-center">
+              <div className="pt-3 border-t border-slate-100 dark:border-white/10 text-[11px] text-slate-500 dark:text-slate-400 font-medium flex justify-between items-center">
                 <span>Seats Available:</span>
                 <span className="font-bold text-slate-700 dark:text-slate-300">
                   {tier.available} left
@@ -103,7 +103,7 @@ export const TicketSelector = ({
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-6 p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <div>
             <h4 className="text-sm font-bold text-slate-900 dark:text-white">
@@ -115,7 +115,7 @@ export const TicketSelector = ({
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center bg-white dark:bg-slate-900 rounded-2xl p-1 border border-slate-200 dark:border-slate-700 shadow-xs">
+            <div className="flex items-center bg-white dark:bg-slate-900 rounded-2xl p-1 border border-slate-200 dark:border-white/10 shadow-xs">
               <button
                 type="button"
                 onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
@@ -142,10 +142,10 @@ export const TicketSelector = ({
             </div>
 
             <div className="text-right min-w-[100px]">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">
                 Subtotal
               </span>
-              <span className="text-lg font-black text-indigo-600 dark:text-indigo-400">
+              <span className="text-lg font-black text-rose-600 dark:text-rose-400">
                 ₹{(Number(selectedType.price) * quantity).toLocaleString('en-IN')}
               </span>
             </div>

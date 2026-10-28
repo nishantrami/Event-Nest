@@ -117,8 +117,8 @@ export const WebsiteLoader = ({ onComplete }) => {
                 className="absolute inset-0 rounded-2xl border-2 border-dashed border-orange-500 opacity-60"
               />
 
-              {/* Central Solid Red Squircle */}
-              <div className="relative w-[52px] h-[52px] rounded-2xl bg-red-600 border border-white/20 flex items-center justify-center shadow-lg shadow-red-600/30">
+              {/* Central Radiant Brand Squircle */}
+              <div className="relative w-[52px] h-[52px] rounded-2xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-500 border border-white/20 flex items-center justify-center shadow-lg shadow-rose-600/40">
                 <motion.div
                   animate={{ scale: [1, 1.08, 1] }}
                   transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
@@ -130,19 +130,19 @@ export const WebsiteLoader = ({ onComplete }) => {
 
             {/* Clean Brand Title */}
             <div className="space-y-1">
-              <h1 className="text-xl font-bold tracking-tight text-white flex items-center justify-center gap-1">
-                Event<span className="text-red-500">Nest</span>
+              <h1 className="text-xl font-bold tracking-tight text-white flex items-center justify-center">
+                Event<span className="text-gradient-rose">Nest</span>
               </h1>
-              <p className="text-xs text-yellow-400 font-medium">
+              <p className="text-xs text-amber-300 font-medium">
                 Curating live experiences...
               </p>
             </div>
 
-            {/* Minimalist 2px Precision Progress Bar (Solid Orange) */}
+            {/* Minimalist 2px Precision Progress Bar */}
             <div className="w-48 sm:w-56 space-y-2 pt-2">
               <div className="h-[2px] w-full bg-slate-800 rounded-full overflow-hidden relative">
                 <motion.div
-                  className="h-full bg-orange-500 relative"
+                  className="h-full bg-gradient-to-r from-rose-500 via-rose-400 to-amber-400 relative"
                   style={{ width: `${progress}%` }}
                   transition={{ ease: 'linear' }}
                 />
@@ -159,7 +159,7 @@ export const WebsiteLoader = ({ onComplete }) => {
 
           {/* Bottom Clean Signature */}
           <div className="text-[11px] font-mono text-slate-500 z-10">
-            <span>Solid Architecture • Red • Orange • Yellow • White</span>
+            <span>Direct Promoter Passes • Authenticated Live Experiences</span>
           </div>
         </motion.div>
       )}

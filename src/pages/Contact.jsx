@@ -76,13 +76,13 @@ export const Contact = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
       {/* 1. Header Hero Banner */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-900/60 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/60 text-rose-600 dark:text-rose-400 text-xs font-bold uppercase tracking-widest shadow-xs">
           <Sparkles className="w-3.5 h-3.5" />
           <span>24/7 Dedicated Concierge & Live Support</span>
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight">
           We’re Here for Your <br className="hidden sm:inline" />
-          <span className="text-red-600 dark:text-red-500">Live Experience.</span>
+          <span className="text-gradient-rose">Live Experience.</span>
         </h1>
         <p className="text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
           Need assistance with ticketing, venue entry gates, organizer partnerships, or booking changes? Our dedicated live support team is on standby to help.
@@ -271,8 +271,8 @@ export const Contact = () => {
                         onClick={() => setSelectedTopic(topic.id)}
                         className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-red-50 dark:bg-red-950/60 border-red-500 text-red-600 dark:text-red-400 shadow-xs'
-                            : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700'
+                            ? 'bg-rose-50 dark:bg-rose-950/60 border-rose-500 text-rose-600 dark:text-rose-400 shadow-xs'
+                            : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700'
                         }`}
                       >
                         <IconComponent className="w-4 h-4 mb-1.5" />

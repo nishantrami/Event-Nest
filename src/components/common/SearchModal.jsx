@@ -102,11 +102,11 @@ export const SearchModal = ({ isOpen, onClose }) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden z-10"
+            className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden z-10"
           >
             {/* Search Input Bar */}
-            <form onSubmit={handleSearchSubmit} className="relative flex items-center border-b border-slate-100 dark:border-slate-800 px-5 py-4">
-              <Search className="w-5 h-5 text-indigo-500 shrink-0" />
+            <form onSubmit={handleSearchSubmit} className="relative flex items-center border-b border-slate-100 dark:border-white/10 px-5 py-4">
+              <Search className="w-5 h-5 text-rose-500 shrink-0" />
               <input
                 ref={inputRef}
                 type="text"
@@ -119,7 +119,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                 <button
                   type="button"
                   onClick={() => setQuery('')}
-                  className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-full mr-2"
+                  className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-full mr-2 cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -127,7 +127,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="text-xs font-semibold px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700"
+                className="text-xs font-semibold px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 cursor-pointer"
               >
                 ESC
               </button>
@@ -141,7 +141,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                     <span>Matching Events ({filteredEvents.length})</span>
                     <button
                       onClick={handleSearchSubmit}
-                      className="text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1 normal-case"
+                      className="text-rose-600 dark:text-rose-400 hover:underline inline-flex items-center gap-1 normal-case font-bold cursor-pointer"
                     >
                       View all results <ArrowRight className="w-3.5 h-3.5" />
                     </button>
@@ -161,12 +161,12 @@ export const SearchModal = ({ isOpen, onClose }) => {
                             className="w-14 h-14 rounded-xl object-cover shrink-0"
                           />
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 truncate">
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 truncate">
                               {evt.title}
                             </h4>
                             <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mt-1">
                               <span className="flex items-center gap-1">
-                                <Calendar className="w-3 h-3 text-indigo-400" />
+                                <Calendar className="w-3 h-3 text-rose-400" />
                                 {formatDate(evt.date)}
                               </span>
                               <span className="flex items-center gap-1">
@@ -204,7 +204,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                         </span>
                         <button
                           onClick={clearHistory}
-                          className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+                          className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors cursor-pointer"
                         >
                           Clear All
                         </button>
@@ -222,7 +222,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                             <span>{item}</span>
                             <button
                               onClick={(e) => removeHistoryItem(e, item)}
-                              className="text-slate-400 hover:text-rose-500"
+                              className="text-slate-400 hover:text-rose-500 cursor-pointer"
                             >
                               <X className="w-3 h-3" />
                             </button>
@@ -242,7 +242,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                         <button
                           key={tag}
                           onClick={() => handleTagClick(tag)}
-                          className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-400 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 bg-white dark:bg-slate-900/50 transition-colors"
+                          className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 hover:border-rose-500 dark:hover:border-rose-400 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 bg-white dark:bg-slate-900/50 transition-colors cursor-pointer"
                         >
                           #{tag}
                         </button>

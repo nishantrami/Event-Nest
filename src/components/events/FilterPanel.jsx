@@ -29,20 +29,20 @@ export const FilterPanel = ({
   totalResults = 0,
 }) => {
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs space-y-6">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+    <div className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 shadow-sm space-y-6">
+      <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-white/10">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-red-600" />
+          <Filter className="w-4 h-4 text-rose-500" />
           <h3 className="font-bold text-base text-slate-900 dark:text-white">
             Filters
           </h3>
-          <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold">
+          <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold">
             {totalResults}
           </span>
         </div>
         <button
           onClick={onResetFilters}
-          className="text-xs text-red-600 dark:text-red-400 hover:underline flex items-center gap-1 font-semibold cursor-pointer"
+          className="text-xs text-rose-600 dark:text-rose-400 hover:underline flex items-center gap-1 font-bold cursor-pointer"
         >
           <RotateCcw className="w-3.5 h-3.5" /> Reset
         </button>
@@ -51,28 +51,28 @@ export const FilterPanel = ({
       {/* Search Input Filter */}
       <div className="space-y-2">
         <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-          <Search className="w-3.5 h-3.5" /> Search Event
+          <Search className="w-3.5 h-3.5 text-rose-500" /> Search Event
         </label>
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Keyword, artist, venue..."
-          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50 dark:bg-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-red-500"
+          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all"
         />
       </div>
 
       {/* Category Filter */}
       <div className="space-y-2">
         <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-orange-500" /> Category
+          <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Category
         </label>
         <div className="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto pr-1">
           <button
             onClick={() => onCategoryChange('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedCategory === 'all'
-                ? 'bg-red-600 text-white shadow-xs'
+                ? 'bg-gradient-to-r from-rose-600 to-rose-500 text-white shadow-xs'
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
@@ -82,9 +82,9 @@ export const FilterPanel = ({
             <button
               key={cat.id}
               onClick={() => onCategoryChange(cat.id)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 selectedCategory === cat.id
-                  ? 'bg-red-600 text-white shadow-xs'
+                  ? 'bg-gradient-to-r from-rose-600 to-rose-500 text-white shadow-xs'
                   : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
@@ -97,12 +97,12 @@ export const FilterPanel = ({
       {/* City Filter */}
       <div className="space-y-2">
         <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-          <MapPin className="w-3.5 h-3.5 text-orange-500" /> City
+          <MapPin className="w-3.5 h-3.5 text-rose-500" /> City
         </label>
         <select
           value={selectedCity}
           onChange={(e) => onCityChange(e.target.value)}
-          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50 dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-red-500"
+          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all cursor-pointer"
         >
           {CITIES.map((city) => (
             <option key={city} value={city === 'All Cities' ? 'all' : city}>
@@ -116,9 +116,9 @@ export const FilterPanel = ({
       <div className="space-y-2">
         <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
           <span className="flex items-center gap-1.5">
-            <DollarSign className="w-3.5 h-3.5" /> Max Price
+            <DollarSign className="w-3.5 h-3.5 text-emerald-500" /> Max Price
           </span>
-          <span className="text-red-600 dark:text-red-400 font-black normal-case text-sm">
+          <span className="text-rose-600 dark:text-rose-400 font-black normal-case text-sm">
             ₹{maxPrice.toLocaleString('en-IN')}
           </span>
         </div>
@@ -129,9 +129,9 @@ export const FilterPanel = ({
           step="50"
           value={maxPrice}
           onChange={(e) => onMaxPriceChange(Number(e.target.value))}
-          className="w-full accent-red-600 cursor-pointer"
+          className="w-full accent-rose-600 cursor-pointer"
         />
-        <div className="flex justify-between text-[10px] text-slate-400">
+        <div className="flex justify-between text-[10px] text-slate-400 font-medium">
           <span>₹550</span>
           <span>₹1,000</span>
           <span>₹1,500</span>
@@ -141,7 +141,7 @@ export const FilterPanel = ({
       {/* Rating Filter */}
       <div className="space-y-2">
         <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-          <Star className="w-3.5 h-3.5 text-yellow-500" /> Minimum Rating
+          <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" /> Minimum Rating
         </label>
         <div className="grid grid-cols-4 gap-1.5">
           {[
@@ -153,9 +153,9 @@ export const FilterPanel = ({
             <button
               key={item.value}
               onClick={() => onMinRatingChange(item.value)}
-              className={`py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
+              className={`py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 minRating === item.value
-                  ? 'bg-yellow-400 text-slate-950 font-bold shadow-xs'
+                  ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-xs'
                   : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
@@ -173,7 +173,7 @@ export const FilterPanel = ({
         <select
           value={sortBy}
           onChange={(e) => onSortByChange(e.target.value)}
-          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50 dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-red-500"
+          className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-800/80 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all cursor-pointer"
         >
           <option value="popularity">Popularity / Featured</option>
           <option value="price-low">Price: Low to High</option>

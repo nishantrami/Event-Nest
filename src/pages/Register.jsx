@@ -48,11 +48,11 @@ export const Register = () => {
 
   return (
     <div className="min-h-[85vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+      <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
         
         {/* Top Header */}
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mx-auto shadow-lg shadow-indigo-600/30">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-500 text-white flex items-center justify-center mx-auto shadow-lg shadow-rose-600/30">
             <Sparkles className="w-6 h-6 fill-white" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -114,7 +114,7 @@ export const Register = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -136,16 +136,16 @@ export const Register = () => {
             variant="primary"
             size="lg"
             isLoading={isLoading}
-            className="w-full text-base font-bold shadow-lg shadow-indigo-600/30 mt-2"
+            className="w-full text-base font-bold shadow-lg shadow-rose-600/30 mt-2"
           >
             Create My Account
           </Button>
         </form>
 
         {/* Bottom Switch Link */}
-        <div className="text-center text-xs text-slate-500 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div className="text-center text-xs text-slate-500 pt-2 border-t border-slate-100 dark:border-white/10">
           <span>Already have an account? </span>
-          <Link to="/login" className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+          <Link to="/login" className="font-bold text-rose-600 dark:text-rose-400 hover:underline">
             Sign In here
           </Link>
         </div>

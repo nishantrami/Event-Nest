@@ -16,7 +16,8 @@ import {
   ArrowRight,
   User,
   MessageSquarePlus,
-  Send
+  Send,
+  Flame
 } from 'lucide-react';
 import { useEvents } from '../context/EventsContext';
 import { useCart } from '../context/CartContext';
@@ -215,14 +216,15 @@ export const EventDetails = () => {
               {event.category}
             </Badge>
             {event.trending && (
-              <Badge variant="trending" size="sm" className="bg-yellow-400 text-slate-950 font-black border-none">
-                Trending
-              </Badge>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white font-bold text-[10px] uppercase tracking-wider shadow-sm">
+                <Flame className="w-3 h-3 fill-white" />
+                <span>Trending</span>
+              </span>
             )}
-            <div className="flex items-center gap-1 bg-yellow-400 text-slate-950 px-2 py-0.5 rounded-full font-black text-xs">
+            <div className="flex items-center gap-1 bg-amber-400 text-slate-950 px-2.5 py-0.5 rounded-full font-black text-xs shadow-xs">
               <Star className="w-3.5 h-3.5 fill-slate-950" />
               <span>{event.rating || 4.9}</span>
-              <span className="text-[10px] text-slate-800">({event.reviewsCount || 120} reviews)</span>
+              <span className="text-[10px] text-slate-800 font-bold">({event.reviewsCount || 120} reviews)</span>
             </div>
           </div>
 
@@ -232,15 +234,15 @@ export const EventDetails = () => {
 
           <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-200">
             <span className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-orange-400" />
+              <Calendar className="w-4 h-4 text-rose-400" />
               {formatDate(event.date)}
             </span>
             <span className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-orange-400" />
+              <Clock className="w-4 h-4 text-amber-400" />
               {formatTime(event.time)} ({event.duration || '3 Hours'})
             </span>
             <span className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-orange-400" />
+              <MapPin className="w-4 h-4 text-rose-400" />
               {event.venue}, {event.city}
             </span>
           </div>
@@ -255,9 +257,9 @@ export const EventDetails = () => {
           <div className="lg:col-span-8 space-y-10">
             
             {/* Live Countdown Banner */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                <span className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400">
                   Event Countdown
                 </span>
                 <h4 className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
@@ -268,7 +270,7 @@ export const EventDetails = () => {
             </div>
 
             {/* About & Description */}
-            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
+            <section className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xs">
               <h3 className="text-xl font-black text-slate-900 dark:text-white">
                 About the Event
               </h3>
